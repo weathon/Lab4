@@ -39,13 +39,13 @@ combindedY = np.append(wide1, detial1)
 ```
 
 ```{r}
-plot(py$x1, py$wide1, 'b', main="Titration Curve Between with 1mL Interval", xlab="Drops of 2M KOH", ylab="pH of the solution")
+plot(py$x1, py$wide1, 'b', main="Titration Curve With 1mL Interval", xlab="Drops of 2M KOH", ylab="pH of the solution")
 ```
 
 ```{r}
-plot(py$x2, py$detial1, 'b', main="Titration Curve Between with Detial Info Near Equivalence Point", xlab="Drops of 2M KOH", ylab="pH of the solution")
+plot(py$x2, py$detial1, 'b', main="Titration Curve With Detial Info Near Equivalence Point", xlab="mL of 2M KOH", ylab="pH of the solution")
 ```
 
 ```{r}
-plot(py$combindedX, py$combindedY, main="Combinded Info Graph", xlab="Drops of 2M KOH", ylab="pH of the solution")
+plot(py$combindedX, py$combindedY, main="Combinded Info Graph", xlab="mL of 2M KOH", ylab="pH of the solution")
 ```
