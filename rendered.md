@@ -1,0 +1,51 @@
+```{r setup, include=FALSE}
+library("reticulate")
+library(knitr)  
+knitr::knit_engines$set(python = reticulate::eng_python)  
+```
+
+```{python}
+import numpy as np
+import pandas as pd
+from pylab import *
+```
+
+```{python}
+def readData(filename):
+  res = []
+  with open(filename, "r") as f:
+    con = f.readlines()
+  for i in con:
+    if i.startswith("#"):
+      continue
+    row = []
+    for j in i.split(","):
+      try:
+        row.append(float(j))
+      except:
+        row.append(np.NaN)
+    res.append(row)
+  return np.array(res)
+```
+
+```{python}
+x1 = np.arange(1,54)
+wide1 = readData("OurWideRange.data")
+data2 = readData("OurDetial.data")
+x2 = data2[:,0]
+detial1 = data2[:,1]
+combindedX = np.append(x1, x2)
+combindedY = np.append(wide1, detial1)
+```
+
+```{r}
+plot(py$x1, py$wide1, 'b', main="Titration Curve With 1mL Interval", xlab="Drops of 2M KOH", ylab="pH of the solution")
+```
+
+```{r}
+plot(py$x2, py$detial1, 'b', main="Titration Curve With Detial Info Near Equivalence Point", xlab="mL of 2M KOH", ylab="pH of the solution")
+```
+
+```{r}
+plot(py$combindedX, py$combindedY, main="Combinded Info Graph", xlab="mL of 2M KOH", ylab="pH of the solution")
+```
